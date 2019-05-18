@@ -38,6 +38,7 @@
             this.fileDialog = new System.Windows.Forms.OpenFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.HöhenverlaufMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.groupLegende.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -108,10 +109,11 @@
             // 
             // menuGraph
             // 
+            this.menuGraph.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.HöhenverlaufMenu});
             this.menuGraph.Name = "menuGraph";
             this.menuGraph.Size = new System.Drawing.Size(64, 20);
             this.menuGraph.Text = "Graphen";
-            this.menuGraph.Click += new System.EventHandler(this.MenuGraph_Click);
             // 
             // fileDialog
             // 
@@ -133,6 +135,13 @@
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(35, 17);
             this.statusLabel.Text = "Idle...";
+            // 
+            // HöhenverlaufMenu
+            // 
+            this.HöhenverlaufMenu.Name = "HöhenverlaufMenu";
+            this.HöhenverlaufMenu.Size = new System.Drawing.Size(180, 22);
+            this.HöhenverlaufMenu.Text = "Höhenverlauf";
+            this.HöhenverlaufMenu.Click += new System.EventHandler(this.HöhenverlaufMenu_Click);
             // 
             // Main
             // 
@@ -170,6 +179,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.ToolStripMenuItem menuGraph;
+        private System.Windows.Forms.ToolStripMenuItem HöhenverlaufMenu;
     }
 }
 

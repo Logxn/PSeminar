@@ -44,14 +44,6 @@ namespace PSeminar
             _map.ParseTrack(file);
         }
 
-        private void MenuGraph_Click(object sender, EventArgs e)
-        {
-            if (_gpx == null) return;
-
-            var höhenVerlauf  = new HeightGraph(_gpx);
-            höhenVerlauf.Show();
-        }
-
         public void SetGpx(RootElement gpx)
         {
             _gpx = gpx;
@@ -60,6 +52,14 @@ namespace PSeminar
         public void SetStatus(string content)
         {
             statusLabel.Text = content;
+        }
+
+        private void HöhenverlaufMenu_Click(object sender, EventArgs e)
+        {
+            if (_gpx == null) return;
+
+            var höhenVerlauf = new HöhenVerlauf(_gpx);
+            höhenVerlauf.Show();
         }
     }
 }

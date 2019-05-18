@@ -1,6 +1,6 @@
 ﻿namespace PSeminar
 {
-    partial class HeightGraph
+    partial class HöhenVerlauf
     {
         /// <summary>
         /// Required designer variable.

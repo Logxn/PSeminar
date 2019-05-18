@@ -131,7 +131,7 @@ namespace PSeminar
             sw.WriteLine("trackPath.setMap(map);");
             sw.WriteLine("}");
 
-            #region Ups
+            #region DEBUG CODE
             //// Gesonderter Index um den Punkten eine korrekte Nummerierung zu geben
             //int wpNumber = 1;
             //for (int i = 0; i < waypoints.Count; i++)
