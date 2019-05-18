@@ -23,8 +23,8 @@ namespace PSeminar
             _googleMapsApiKey = configManger.LoadConfig().GoogleApiKey;
             if (string.IsNullOrWhiteSpace((_googleMapsApiKey)))
             {
-                MessageBox.Show("Fehler: Es wurde kein API-Key für Google Maps in die Einstellungsdatei eingetragen! Das Programm schließt sich nun.",
-                    "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(@"Fehler: Es wurde kein API-Key für Google Maps in die Einstellungsdatei eingetragen! Das Programm schließt sich nun.",
+                    @"Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 Environment.Exit(1);
             }
@@ -48,7 +48,7 @@ namespace PSeminar
         {
             if (_gpx == null) return;
 
-            var x  = new TrackData(_gpx);
+            var x  = new HeightGraph(_gpx);
             x.Show();
         }
 
