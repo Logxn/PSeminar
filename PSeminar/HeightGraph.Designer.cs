@@ -38,7 +38,7 @@
             // 
             // heightChart
             // 
-            chartArea1.AxisX.Title = "Wegpunkte";
+            chartArea1.AxisX.Title = "Entfernung in Wegpunkten";
             chartArea1.AxisY.Title = "Höhe in Meter";
             chartArea1.Name = "ChartArea1";
             this.heightChart.ChartAreas.Add(chartArea1);
@@ -59,14 +59,14 @@
             title1.Text = "Wanderweg Höhenverlauf";
             this.heightChart.Titles.Add(title1);
             // 
-            // TrackData
+            // HeightGraph
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(577, 358);
             this.Controls.Add(this.heightChart);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "TrackData";
+            this.Name = "HeightGraph";
             this.Text = "P-Seminar Projekt: Wanderweg Ickeheim - github.com/Logxn - www.loganthompson.de -" +
     " Track Daten";
             this.Load += new System.EventHandler(this.TrackData_Load);
