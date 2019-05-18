@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Weavers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FodyWeavers.xsd">
+	<Costura>
+		<IncludeAssemblies>
+			CefSharp
+			EntityFramework
+			Newtonsoft.Json
+			RestSharp
+			Google.Maps
+			System.Data.SQLite
+			System.Data.SQLite.EF6
+			System.Data.SQLite.Linq
+			EntityFramework.SqlServer
+			CefSharp
+			CefSharp.WinForms
+			CefSharp.Core
+		</IncludeAssemblies>
+		<Unmanaged32Assemblies>
+			cef.redist.x86
+		</Unmanaged32Assemblies>
+		<Unmanaged64Assemblies>
+			cef.redist.x64
+		</Unmanaged64Assemblies>
+	</Costura>
+</Weavers>
