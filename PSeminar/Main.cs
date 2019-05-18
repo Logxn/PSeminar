@@ -48,8 +48,8 @@ namespace PSeminar
         {
             if (_gpx == null) return;
 
-            var x  = new HeightGraph(_gpx);
-            x.Show();
+            var höhenVerlauf  = new HeightGraph(_gpx);
+            höhenVerlauf.Show();
         }
 
         public void SetGpx(RootElement gpx)
