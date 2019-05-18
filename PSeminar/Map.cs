@@ -9,7 +9,6 @@ using System.Text;
 using CefSharp.WinForms;
 using CefSharp;
 
-
 namespace PSeminar
 {
     public class Map
@@ -70,8 +69,8 @@ namespace PSeminar
             var htmlPath = AppDomain.CurrentDomain.BaseDirectory + "map.html";
             var sw = new StreamWriter(htmlPath, false, Encoding.GetEncoding(437));
 
-            string centerLongitude = waypoints[0].Longitude;
-            string centerLatitude = waypoints[0].Latitude;
+            var centerLongitude = waypoints[0].Longitude;
+            var centerLatitude = waypoints[0].Latitude;
 
             // Ab hier schreiben wir ein neues HTML Dokument, welches uns die Karte anzeigt
             sw.WriteLine("<!DOCTYPE html>");
@@ -116,16 +115,17 @@ namespace PSeminar
             sw.WriteLine("strokeWeight: 2");
             sw.WriteLine("});");
 
-            sw.WriteLine($"var markerGips = new google.maps.Marker(" + "{");
+            // Spezielle Marker wie Gipsbruch, Start & Ziel, später auch noch Rastplätze etc.
+            sw.WriteLine("var markerGips = new google.maps.Marker(" + "{");
             sw.WriteLine("position: { lat: " + waypoints[77].Latitude + ", lng: " + waypoints[77].Longitude + "},");
             sw.WriteLine("map: map,");
-            sw.WriteLine($"label: 'G',");
+            sw.WriteLine("label: 'G',");
             sw.WriteLine("});");
 
-            sw.WriteLine($"var markerStartZiel = new google.maps.Marker(" + "{");
+            sw.WriteLine("var markerStartZiel = new google.maps.Marker(" + "{");
             sw.WriteLine("position: { lat: " + waypoints[500].Latitude + ", lng: " + waypoints[500].Longitude + "},");
             sw.WriteLine("map: map,");
-            sw.WriteLine($"label: 'S/Z',");
+            sw.WriteLine("label: 'S/Z',");
             sw.WriteLine("});");
 
             sw.WriteLine("trackPath.setMap(map);");
@@ -184,7 +184,7 @@ namespace PSeminar
                 Dock = DockStyle.Fill,
             };
 
-            Application.OpenForms["Main"]?.Controls.Add(chromeBrowser);
+            _main?.Controls.Add(chromeBrowser);
         }
     }
 }
