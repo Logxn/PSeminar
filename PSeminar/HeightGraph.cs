@@ -4,16 +4,16 @@ using System.Windows.Forms;
 
 namespace PSeminar
 {
-    public partial class TrackData : Form
+    public partial class HeightGraph : Form
     {
         private List<Waypoints> _data;
 
-        public TrackData()
+        public HeightGraph()
         {
             InitializeComponent();
         }
 
-        public TrackData(RootElement gpx)
+        public HeightGraph(RootElement gpx)
         {
             InitializeComponent();
             _data = gpx.Track.TrackSegment.Waypoints;

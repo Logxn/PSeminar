@@ -99,7 +99,7 @@ namespace PSeminar
             sw.WriteLine("});");
 
             sw.WriteLine("var trackCoordinates = [");
-            for(var i = 0; i < waypoints.Count; i++)
+            for (var i = 0; i < waypoints.Count; i++)
             {
                 // Trackfehler
                 if (i + 1 > 110 && i + 1 < 120) continue;
@@ -116,6 +116,18 @@ namespace PSeminar
             sw.WriteLine("strokeWeight: 2");
             sw.WriteLine("});");
 
+            sw.WriteLine($"var markerGips = new google.maps.Marker(" + "{");
+            sw.WriteLine("position: { lat: " + waypoints[77].Latitude + ", lng: " + waypoints[77].Longitude + "},");
+            sw.WriteLine("map: map,");
+            sw.WriteLine($"label: 'G',");
+            sw.WriteLine("});");
+
+            sw.WriteLine($"var markerStartZiel = new google.maps.Marker(" + "{");
+            sw.WriteLine("position: { lat: " + waypoints[500].Latitude + ", lng: " + waypoints[500].Longitude + "},");
+            sw.WriteLine("map: map,");
+            sw.WriteLine($"label: 'S/Z',");
+            sw.WriteLine("});");
+
             sw.WriteLine("trackPath.setMap(map);");
             sw.WriteLine("}");
 
@@ -127,7 +139,7 @@ namespace PSeminar
             //    // Punkte die versehentlich oder falsch gesetzt wurden;
             //    if (i == 0 || i == 2 || i == 33 || i == 34 || i == 35)
             //    {
-            //        _logger.Log(LogLevel.Debug, "Ignoriere Wegpunkt der versehentlich/falsch gesetzt wurde!");
+            //        //_logger.Log(LogLevel.Debug, "Ignoriere Wegpunkt der versehentlich/falsch gesetzt wurde!");
             //        continue;
             //    }
 
@@ -149,7 +161,7 @@ namespace PSeminar
 
             //    sw.WriteLine("});");
 
-            //    _logger.Log(LogLevel.Debug, "Wegpunkt auf Karte eingetragen");
+            //    //_logger.Log(LogLevel.Debug, "Wegpunkt auf Karte eingetragen");
 
             //    wpNumber++;
             //}

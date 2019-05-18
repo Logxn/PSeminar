@@ -1,6 +1,6 @@
 ﻿namespace PSeminar
 {
-    partial class TrackData
+    partial class HeightGraph
     {
         /// <summary>
         /// Required designer variable.
