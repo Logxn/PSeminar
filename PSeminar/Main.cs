@@ -56,5 +56,10 @@ namespace PSeminar
         {
             _gpx = gpx;
         }
+
+        public void SetStatus(string content)
+        {
+            statusLabel.Text = content;
+        }
     }
 }

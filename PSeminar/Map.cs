@@ -15,10 +15,12 @@ namespace PSeminar
     public class Map
     {
         private static string _apiKey;
+        private static Main _main;
 
         public Map(string apiKey)
         {
             _apiKey = apiKey;
+            _main = Application.OpenForms["Main"] as Main;
 
             // Init 'Chromium Embedded Framework'
             var settings = new CefSettings();
@@ -34,7 +36,11 @@ namespace PSeminar
             var executingPath = new DirectoryInfo(executingPathString);
 
             var files = executingPath.GetFiles("*.gpx");
-            if (!files.Any()) return;
+            if (!files.Any())
+            {
+                _main.SetStatus("Keine Trackdatei gefunden!");
+                return;
+            }
 
             var file = files.FirstOrDefault();
             ParseTrack(file);
