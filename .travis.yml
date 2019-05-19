@@ -1,2 +1,4 @@
 language: csharp
 solution: PSeminar.sln
+script:
+    - msbuild /p:Configuration=x64 PSeminar.sln
