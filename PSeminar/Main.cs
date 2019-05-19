@@ -61,5 +61,13 @@ namespace PSeminar
             var höhenVerlauf = new HöhenVerlauf(_gpx);
             höhenVerlauf.Show();
         }
+
+        private void HöhenMenu_Click(object sender, EventArgs e)
+        {
+            if (_gpx == null) return;
+
+            var höhen = new Höhen(_gpx);
+            höhen.Show();
+        }
     }
 }

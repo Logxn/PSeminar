@@ -61,14 +61,6 @@ namespace PSeminar
         public string Ascent { get; set; }
         [XmlElement(ElementName = "Descent", Namespace = "http://www.garmin.com/xmlschemas/TrackStatsExtension/v1")]
         public string Descent { get; set; }
-        [XmlElement(ElementName = "AvgAscentRate", Namespace = "http://www.garmin.com/xmlschemas/TrackStatsExtension/v1")]
-        public string AvgAscentRate { get; set; }
-        [XmlElement(ElementName = "MaxAscentRate", Namespace = "http://www.garmin.com/xmlschemas/TrackStatsExtension/v1")]
-        public string MaxAscentRate { get; set; }
-        [XmlElement(ElementName = "AvgDescentRate", Namespace = "http://www.garmin.com/xmlschemas/TrackStatsExtension/v1")]
-        public string AvgDescentRate { get; set; }
-        [XmlElement(ElementName = "MaxDescentRate", Namespace = "http://www.garmin.com/xmlschemas/TrackStatsExtension/v1")]
-        public string MaxDescentRate { get; set; }
     }
 
     [XmlRoot(ElementName = "extensions", Namespace = "http://www.topografix.com/GPX/1/1")]

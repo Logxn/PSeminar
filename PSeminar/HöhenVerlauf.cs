@@ -6,7 +6,7 @@ namespace PSeminar
 {
     public partial class HöhenVerlauf : Form
     {
-        private List<Waypoints> _data;
+        private readonly List<Waypoints> _data;
 
         public HöhenVerlauf()
         {

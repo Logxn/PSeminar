@@ -35,10 +35,12 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.menuOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.menuGraph = new System.Windows.Forms.ToolStripMenuItem();
+            this.HöhenverlaufMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.fileDialog = new System.Windows.Forms.OpenFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.HöhenverlaufMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.HöhenMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.trackinfosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupLegende.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -93,7 +95,8 @@
             this.menuStrip.BackColor = System.Drawing.SystemColors.MenuBar;
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuOpen,
-            this.menuGraph});
+            this.menuGraph,
+            this.trackinfosToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(806, 24);
@@ -110,10 +113,18 @@
             // menuGraph
             // 
             this.menuGraph.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.HöhenverlaufMenu});
+            this.HöhenverlaufMenu,
+            this.HöhenMenu});
             this.menuGraph.Name = "menuGraph";
             this.menuGraph.Size = new System.Drawing.Size(64, 20);
             this.menuGraph.Text = "Graphen";
+            // 
+            // HöhenverlaufMenu
+            // 
+            this.HöhenverlaufMenu.Name = "HöhenverlaufMenu";
+            this.HöhenverlaufMenu.Size = new System.Drawing.Size(180, 22);
+            this.HöhenverlaufMenu.Text = "Höhenverlauf";
+            this.HöhenverlaufMenu.Click += new System.EventHandler(this.HöhenverlaufMenu_Click);
             // 
             // fileDialog
             // 
@@ -136,12 +147,18 @@
             this.statusLabel.Size = new System.Drawing.Size(35, 17);
             this.statusLabel.Text = "Idle...";
             // 
-            // HöhenverlaufMenu
+            // HöhenMenu
             // 
-            this.HöhenverlaufMenu.Name = "HöhenverlaufMenu";
-            this.HöhenverlaufMenu.Size = new System.Drawing.Size(180, 22);
-            this.HöhenverlaufMenu.Text = "Höhenverlauf";
-            this.HöhenverlaufMenu.Click += new System.EventHandler(this.HöhenverlaufMenu_Click);
+            this.HöhenMenu.Name = "HöhenMenu";
+            this.HöhenMenu.Size = new System.Drawing.Size(180, 22);
+            this.HöhenMenu.Text = "Höhen";
+            this.HöhenMenu.Click += new System.EventHandler(this.HöhenMenu_Click);
+            // 
+            // trackinfosToolStripMenuItem
+            // 
+            this.trackinfosToolStripMenuItem.Name = "trackinfosToolStripMenuItem";
+            this.trackinfosToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
+            this.trackinfosToolStripMenuItem.Text = "Trackinfos";
             // 
             // Main
             // 
@@ -180,6 +197,8 @@
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.ToolStripMenuItem menuGraph;
         private System.Windows.Forms.ToolStripMenuItem HöhenverlaufMenu;
+        private System.Windows.Forms.ToolStripMenuItem HöhenMenu;
+        private System.Windows.Forms.ToolStripMenuItem trackinfosToolStripMenuItem;
     }
 }
 

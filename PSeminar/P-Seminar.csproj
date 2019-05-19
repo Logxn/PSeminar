@@ -143,6 +143,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\ConfigManager.cs" />
+    <Compile Include="Höhen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Höhen.Designer.cs">
+      <DependentUpon>Höhen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="ConsoleManagement\ConsoleHelper.cs" />
@@ -160,6 +166,9 @@
     <Compile Include="HöhenVerlauf.Designer.cs">
       <DependentUpon>HöhenVerlauf.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Höhen.resx">
+      <DependentUpon>Höhen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
