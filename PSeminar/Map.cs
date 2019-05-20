@@ -8,6 +8,7 @@ using System.Text;
 
 using CefSharp.WinForms;
 using CefSharp;
+using PSeminar.ConsoleManaging;
 
 namespace PSeminar
 {
@@ -15,7 +16,7 @@ namespace PSeminar
     {
         private static string _apiKey;
         private static Main _main;
-
+        private static ConsoleHelper _logger;
         public Map(string apiKey)
         {
             _apiKey = apiKey;
@@ -25,6 +26,8 @@ namespace PSeminar
             var settings = new CefSettings();
             if (Cef.IsInitialized == false)
                 Cef.Initialize(settings);
+
+            _logger = new ConsoleHelper();
 
             AutoLoadTrack();
         }
@@ -42,11 +45,17 @@ namespace PSeminar
             }
 
             var file = files.FirstOrDefault();
+            if (file != null && file.Name.ToLower().Contains("nic"))
+            {
+                ParseTrack(file, true);
+                return;
+            }
+            
             ParseTrack(file);
         }
 
 
-        public void ParseTrack(FileInfo file)
+        public void ParseTrack(FileInfo file, bool isNickelTrack = false)
         {
             if (file == null) throw new ArgumentNullException(nameof(file));
 
@@ -58,13 +67,19 @@ namespace PSeminar
                 gpx = (RootElement)serializer.Deserialize(reader);
             }
 
-            SendMapsRequest(gpx.Track.TrackSegment.Waypoints);
-
             var main = Application.OpenForms["Main"] as Main;
             main?.SetGpx(gpx);
+
+            if (isNickelTrack || file.Name.ToLower().Contains("nic"))
+            {
+                SendMapsRequest(gpx.Track.TrackSegment.Waypoints, true);
+                return;
+            }
+
+            SendMapsRequest(gpx.Track.TrackSegment.Waypoints);
         }
 
-        private static void SendMapsRequest(IReadOnlyList<Waypoints> waypoints)
+        private static void SendMapsRequest(IReadOnlyList<Waypoints> waypoints, bool isNickelTrack = false)
         {
             var htmlPath = AppDomain.CurrentDomain.BaseDirectory + "map.html";
             var sw = new StreamWriter(htmlPath, false, Encoding.GetEncoding(437));
@@ -95,13 +110,28 @@ namespace PSeminar
             sw.WriteLine("center: { lat: " + centerLatitude + ", lng: " + centerLongitude + "},");
             sw.WriteLine("zoom: 14,");
             sw.WriteLine("mapTypeId: 'satellite',");
+            sw.WriteLine("scrollwheel: true");
             sw.WriteLine("});");
 
             sw.WriteLine("var trackCoordinates = [");
             for (var i = 0; i < waypoints.Count; i++)
             {
-                // Trackfehler
-                if (i + 1 > 110 && i + 1 < 120) continue;
+                // Manuelle Anpassungen nur erforderlich, wenn es sich um UNSERE Trackdatei handelt
+                if (isNickelTrack)
+                {
+                    // Trackfehler
+                    if (i + 1 > 110 && i + 1 < 120) continue;
+
+                    // Hinzufügen der Quelle, die nicht mitgetrackt wurde
+                    // Dirty fix, tut aber was es soll
+                    if (i == 86)
+                    {
+                        sw.WriteLine("{lat: " + waypoints[i].Latitude + ", lng: " + waypoints[i].Longitude + "},");
+                        sw.WriteLine("{lat: 49.466774, lng: 10.435598},");
+                        sw.WriteLine("{lat: " + waypoints[i + 1].Latitude + ", lng: " + waypoints[i + 1].Longitude + "},");
+                        continue;
+                    }
+                }
 
                 sw.WriteLine("{lat: " + waypoints[i].Latitude + ", lng: " + waypoints[i].Longitude + "},");
             }
@@ -128,13 +158,19 @@ namespace PSeminar
             sw.WriteLine("label: 'S/Z',");
             sw.WriteLine("});");
 
+            sw.WriteLine("var markerQuelle = new google.maps.Marker(" + "{");
+            sw.WriteLine("position: { lat: 49.466774, lng: 10.435598},");
+            sw.WriteLine("map: map,");
+            sw.WriteLine("label: 'Q',");
+            sw.WriteLine("});");
+
             sw.WriteLine("trackPath.setMap(map);");
             sw.WriteLine("}");
 
             #region DEBUG CODE
             //// Gesonderter Index um den Punkten eine korrekte Nummerierung zu geben
-            //int wpNumber = 1;
-            //for (int i = 0; i < waypoints.Count; i++)
+            //var wpNumber = 1;
+            //for (var i = 0; i < waypoints.Count; i++)
             //{
             //    // Punkte die versehentlich oder falsch gesetzt wurden;
             //    if (i == 0 || i == 2 || i == 33 || i == 34 || i == 35)
@@ -148,9 +184,6 @@ namespace PSeminar
             //    sw.WriteLine("position: { lat: " + waypoints[i].Latitude + ", lng: " + waypoints[i].Longitude + "},");
             //    sw.WriteLine("map: map,");
 
-
-            //    // Bei besonderen Punkten wird zusätzlich noch ein Titel eingefügt der angezeigt werden kann
-            //    // Wenn der Mauszeiger drüber fährt.
             //    switch (i)
             //    {
             //        default:
@@ -158,17 +191,15 @@ namespace PSeminar
             //            break;
             //    }
 
-
             //    sw.WriteLine("});");
 
-            //    //_logger.Log(LogLevel.Debug, "Wegpunkt auf Karte eingetragen");
+            //    _logger.Log(LogLevel.Debug, $"{i} => {waypoints[i].Latitude},{waypoints[i].Longitude}");
 
             //    wpNumber++;
             //}
 
             //sw.WriteLine("}");
             #endregion
-
 
             sw.WriteLine("</script>");
             sw.WriteLine($"<script src=\"https://maps.googleapis.com/maps/api/js?key={_apiKey}&callback=initMap\"");
