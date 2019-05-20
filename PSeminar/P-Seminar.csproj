@@ -239,4 +239,7 @@
   <Import Project="..\packages\CefSharp.Common.73.1.130\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.73.1.130\build\CefSharp.Common.targets')" />
   <Import Project="..\packages\CefSharp.WinForms.73.1.130\build\CefSharp.WinForms.targets" Condition="Exists('..\packages\CefSharp.WinForms.73.1.130\build\CefSharp.WinForms.targets')" />
   <Import Project="..\packages\Fody.5.0.6\build\Fody.targets" Condition="Exists('..\packages\Fody.5.0.6\build\Fody.targets')" />
+  <PropertyGroup>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+  </PropertyGroup>
 </Project>
