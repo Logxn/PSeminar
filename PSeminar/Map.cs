@@ -120,15 +120,19 @@ namespace PSeminar
                 if (isNickelTrack)
                 {
                     // Trackfehler
-                    if (i + 1 > 110 && i + 1 < 120) continue;
+                    if (i + 1 > 110 && i + 1 < 120 || i > 86 && i < 114) continue;
 
                     // Hinzufügen der Quelle, die nicht mitgetrackt wurde
                     // Dirty fix, tut aber was es soll
                     if (i == 86)
                     {
+                        // Quelle Fix
                         sw.WriteLine("{lat: " + waypoints[i].Latitude + ", lng: " + waypoints[i].Longitude + "},");
                         sw.WriteLine("{lat: 49.466774, lng: 10.435598},");
                         sw.WriteLine("{lat: " + waypoints[i + 1].Latitude + ", lng: " + waypoints[i + 1].Longitude + "},");
+
+                        // Weg fix laut screenshot
+                        sw.WriteLine("{lat: 49.466843, lng: 10.439590},");
                         continue;
                     }
                 }

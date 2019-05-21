@@ -7,4 +7,4 @@ All comments/strings in this code are in German.<br>
 It reads Garmin Track Files (.gpx) and creates a route via Google Maps API and evaluates the statistics given by the GPS.
 
 # Screenshots
-![Screenshot](https://i.imgur.com/325MM5K.jpg)
+![Screenshot](https://i.imgur.com/ZdjFeXQ.jpg)

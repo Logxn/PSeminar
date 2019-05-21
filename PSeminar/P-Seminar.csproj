@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Costura.Fody.4.0.0\build\Costura.Fody.props" Condition="Exists('..\packages\Costura.Fody.4.0.0\build\Costura.Fody.props')" />
   <Import Project="..\packages\CefSharp.WinForms.73.1.130\build\CefSharp.WinForms.props" Condition="Exists('..\packages\CefSharp.WinForms.73.1.130\build\CefSharp.WinForms.props')" />
   <Import Project="..\packages\CefSharp.Common.73.1.130\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.73.1.130\build\CefSharp.Common.props')" />
   <Import Project="..\packages\cef.redist.x86.73.1.13\build\cef.redist.x86.props" Condition="Exists('..\packages\cef.redist.x86.73.1.13\build\cef.redist.x86.props')" />
@@ -107,9 +106,6 @@
     </Reference>
     <Reference Include="CefSharp.Core, Version=71.0.2.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138" />
     <Reference Include="CefSharp.WinForms, Version=71.0.2.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=x86" />
-    <Reference Include="Costura, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
-      <HintPath>..\packages\Costura.Fody.4.0.0\lib\net40\Costura.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -233,12 +229,9 @@
     <Error Condition="!Exists('..\packages\CefSharp.Common.73.1.130\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.73.1.130\build\CefSharp.Common.targets'))" />
     <Error Condition="!Exists('..\packages\CefSharp.WinForms.73.1.130\build\CefSharp.WinForms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.73.1.130\build\CefSharp.WinForms.props'))" />
     <Error Condition="!Exists('..\packages\CefSharp.WinForms.73.1.130\build\CefSharp.WinForms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.73.1.130\build\CefSharp.WinForms.targets'))" />
-    <Error Condition="!Exists('..\packages\Costura.Fody.4.0.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.4.0.0\build\Costura.Fody.props'))" />
-    <Error Condition="!Exists('..\packages\Fody.5.0.6\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.5.0.6\build\Fody.targets'))" />
   </Target>
   <Import Project="..\packages\CefSharp.Common.73.1.130\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.73.1.130\build\CefSharp.Common.targets')" />
   <Import Project="..\packages\CefSharp.WinForms.73.1.130\build\CefSharp.WinForms.targets" Condition="Exists('..\packages\CefSharp.WinForms.73.1.130\build\CefSharp.WinForms.targets')" />
-  <Import Project="..\packages\Fody.5.0.6\build\Fody.targets" Condition="Exists('..\packages\Fody.5.0.6\build\Fody.targets')" />
   <PropertyGroup>
     <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
   </PropertyGroup>
