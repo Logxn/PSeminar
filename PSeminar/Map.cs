@@ -177,6 +177,12 @@ namespace PSeminar
             sw.WriteLine("label: 'Q',");
             sw.WriteLine("});");
 
+            sw.WriteLine("var markerBierkeller = new google.maps.Marker(" + "{");
+            sw.WriteLine("position: { lat: 49.473764, lng: 10.449370},");
+            sw.WriteLine("map: map,");
+            sw.WriteLine("label: 'B',");
+            sw.WriteLine("});");
+
             sw.WriteLine("trackPath.setMap(map);");
             sw.WriteLine("}");
 #endif

@@ -36,11 +36,12 @@
             this.menuOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.menuGraph = new System.Windows.Forms.ToolStripMenuItem();
             this.HöhenverlaufMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.HöhenMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.trackinfosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileDialog = new System.Windows.Forms.OpenFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.HöhenMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.trackinfosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelBierkeller = new System.Windows.Forms.Label();
             this.groupLegende.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -48,6 +49,7 @@
             // 
             // groupLegende
             // 
+            this.groupLegende.Controls.Add(this.labelBierkeller);
             this.groupLegende.Controls.Add(this.labelQuelle);
             this.groupLegende.Controls.Add(this.labelGipsbruch);
             this.groupLegende.Controls.Add(this.labelStartZiel);
@@ -63,7 +65,7 @@
             // labelQuelle
             // 
             this.labelQuelle.AutoSize = true;
-            this.labelQuelle.Location = new System.Drawing.Point(4, 72);
+            this.labelQuelle.Location = new System.Drawing.Point(4, 58);
             this.labelQuelle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelQuelle.Name = "labelQuelle";
             this.labelQuelle.Size = new System.Drawing.Size(57, 13);
@@ -73,7 +75,7 @@
             // labelGipsbruch
             // 
             this.labelGipsbruch.AutoSize = true;
-            this.labelGipsbruch.Location = new System.Drawing.Point(4, 47);
+            this.labelGipsbruch.Location = new System.Drawing.Point(4, 39);
             this.labelGipsbruch.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelGipsbruch.Name = "labelGipsbruch";
             this.labelGipsbruch.Size = new System.Drawing.Size(75, 13);
@@ -122,9 +124,22 @@
             // HöhenverlaufMenu
             // 
             this.HöhenverlaufMenu.Name = "HöhenverlaufMenu";
-            this.HöhenverlaufMenu.Size = new System.Drawing.Size(180, 22);
+            this.HöhenverlaufMenu.Size = new System.Drawing.Size(146, 22);
             this.HöhenverlaufMenu.Text = "Höhenverlauf";
             this.HöhenverlaufMenu.Click += new System.EventHandler(this.HöhenverlaufMenu_Click);
+            // 
+            // HöhenMenu
+            // 
+            this.HöhenMenu.Name = "HöhenMenu";
+            this.HöhenMenu.Size = new System.Drawing.Size(146, 22);
+            this.HöhenMenu.Text = "Höhen";
+            this.HöhenMenu.Click += new System.EventHandler(this.HöhenMenu_Click);
+            // 
+            // trackinfosToolStripMenuItem
+            // 
+            this.trackinfosToolStripMenuItem.Name = "trackinfosToolStripMenuItem";
+            this.trackinfosToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
+            this.trackinfosToolStripMenuItem.Text = "Trackinfos";
             // 
             // fileDialog
             // 
@@ -147,18 +162,15 @@
             this.statusLabel.Size = new System.Drawing.Size(35, 17);
             this.statusLabel.Text = "Idle...";
             // 
-            // HöhenMenu
+            // labelBierkeller
             // 
-            this.HöhenMenu.Name = "HöhenMenu";
-            this.HöhenMenu.Size = new System.Drawing.Size(180, 22);
-            this.HöhenMenu.Text = "Höhen";
-            this.HöhenMenu.Click += new System.EventHandler(this.HöhenMenu_Click);
-            // 
-            // trackinfosToolStripMenuItem
-            // 
-            this.trackinfosToolStripMenuItem.Name = "trackinfosToolStripMenuItem";
-            this.trackinfosToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
-            this.trackinfosToolStripMenuItem.Text = "Trackinfos";
+            this.labelBierkeller.AutoSize = true;
+            this.labelBierkeller.Location = new System.Drawing.Point(4, 77);
+            this.labelBierkeller.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelBierkeller.Name = "labelBierkeller";
+            this.labelBierkeller.Size = new System.Drawing.Size(69, 13);
+            this.labelBierkeller.TabIndex = 3;
+            this.labelBierkeller.Text = "B = Bierkeller";
             // 
             // Main
             // 
@@ -199,6 +211,7 @@
         private System.Windows.Forms.ToolStripMenuItem HöhenverlaufMenu;
         private System.Windows.Forms.ToolStripMenuItem HöhenMenu;
         private System.Windows.Forms.ToolStripMenuItem trackinfosToolStripMenuItem;
+        private System.Windows.Forms.Label labelBierkeller;
     }
 }
 
