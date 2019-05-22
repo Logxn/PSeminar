@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Windows.Forms;
-using System.IO;
-using System.Xml.Serialization;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-
-using CefSharp.WinForms;
+using System.Windows.Forms;
+using System.Xml.Serialization;
 using CefSharp;
+using CefSharp.WinForms;
 using PSeminar.ConsoleManaging;
 
 namespace PSeminar
@@ -16,7 +15,8 @@ namespace PSeminar
     {
         private static string _apiKey;
         private static Main _main;
-        private static ConsoleHelper _logger;
+        private static bool _isNickelTrack;
+
         public Map(string apiKey)
         {
             _apiKey = apiKey;
@@ -27,7 +27,7 @@ namespace PSeminar
             if (Cef.IsInitialized == false)
                 Cef.Initialize(settings);
 
-            _logger = new ConsoleHelper();
+
 
             AutoLoadTrack();
         }
@@ -47,15 +47,14 @@ namespace PSeminar
             var file = files.FirstOrDefault();
             if (file != null && file.Name.ToLower().Contains("nic"))
             {
-                ParseTrack(file, true);
-                return;
+                _isNickelTrack = true;
             }
             
             ParseTrack(file);
         }
 
 
-        public void ParseTrack(FileInfo file, bool isNickelTrack = false)
+        public void ParseTrack(FileInfo file)
         {
             if (file == null) throw new ArgumentNullException(nameof(file));
 
@@ -70,16 +69,15 @@ namespace PSeminar
             var main = Application.OpenForms["Main"] as Main;
             main?.SetGpx(gpx);
 
-            if (isNickelTrack || file.Name.ToLower().Contains("nic"))
+            if (file.Name.ToLower().Contains("nic"))
             {
-                SendMapsRequest(gpx.Track.TrackSegment.Waypoints, true);
-                return;
+                _isNickelTrack = true;
             }
 
             SendMapsRequest(gpx.Track.TrackSegment.Waypoints);
         }
 
-        private static void SendMapsRequest(IReadOnlyList<Waypoints> waypoints, bool isNickelTrack = false)
+        private static void SendMapsRequest(IReadOnlyList<Waypoints> waypoints)
         {
             var htmlPath = AppDomain.CurrentDomain.BaseDirectory + "map.html";
             var sw = new StreamWriter(htmlPath, false, Encoding.GetEncoding(437));
@@ -112,31 +110,42 @@ namespace PSeminar
             sw.WriteLine("mapTypeId: 'satellite',");
             sw.WriteLine("scrollwheel: true");
             sw.WriteLine("});");
-
+#if !DEBUG
             sw.WriteLine("var trackCoordinates = [");
             for (var i = 0; i < waypoints.Count; i++)
             {
                 // Manuelle Anpassungen nur erforderlich, wenn es sich um UNSERE Trackdatei handelt
-                if (isNickelTrack)
+                if (_isNickelTrack)
                 {
                     // Trackfehler
-                    if (i + 1 > 110 && i + 1 < 120 || i > 86 && i < 114) continue;
+                    if (i + 1 > 110 && i + 1 < 120 || i > 86 && i < 114 || i > 200 && i < 233) continue;
 
-                    // Hinzufügen der Quelle, die nicht mitgetrackt wurde
-                    // Dirty fix, tut aber was es soll
                     if (i == 86)
                     {
                         // Quelle Fix
                         sw.WriteLine("{lat: " + waypoints[i].Latitude + ", lng: " + waypoints[i].Longitude + "},");
                         sw.WriteLine("{lat: 49.466774, lng: 10.435598},");
-                        sw.WriteLine("{lat: " + waypoints[i + 1].Latitude + ", lng: " + waypoints[i + 1].Longitude + "},");
+                        sw.WriteLine("{lat: " + waypoints[i + 1].Latitude + ", lng: " + waypoints[i + 1].Longitude +
+                                     "},");
 
                         // Weg fix laut screenshot
                         sw.WriteLine("{lat: 49.466843, lng: 10.439590},");
                         continue;
                     }
-                }
 
+                    if (i == 200)
+                    {
+                        sw.WriteLine("{lat: " + waypoints[i].Latitude + ", lng: " + waypoints[i].Longitude + "},");
+                        sw.WriteLine("{lat: 49.473363, lng: 10.450407},");
+                        sw.WriteLine("{lat: 49.473912, lng: 10.449974},");
+                        sw.WriteLine("{lat: 49.474129, lng: 10.447914},");
+                        sw.WriteLine("{lat: 49.474407, lng: 10.448070},");
+                        sw.WriteLine("{lat: 49.475206, lng: 10.450680},");
+                        sw.WriteLine("{lat: 49.475468, lng: 10.456369},");
+                        sw.WriteLine("{lat: 49.474806, lng: 10.456497},");
+                        continue;
+                    }
+                }
                 sw.WriteLine("{lat: " + waypoints[i].Latitude + ", lng: " + waypoints[i].Longitude + "},");
             }
             sw.WriteLine("];");
@@ -170,40 +179,42 @@ namespace PSeminar
 
             sw.WriteLine("trackPath.setMap(map);");
             sw.WriteLine("}");
+#endif
 
-            #region DEBUG CODE
-            //// Gesonderter Index um den Punkten eine korrekte Nummerierung zu geben
-            //var wpNumber = 1;
-            //for (var i = 0; i < waypoints.Count; i++)
-            //{
-            //    // Punkte die versehentlich oder falsch gesetzt wurden;
-            //    if (i == 0 || i == 2 || i == 33 || i == 34 || i == 35)
-            //    {
-            //        //_logger.Log(LogLevel.Debug, "Ignoriere Wegpunkt der versehentlich/falsch gesetzt wurde!");
-            //        continue;
-            //    }
+#if DEBUG
+            // Gesonderter Index um den Punkten eine korrekte Nummerierung zu geben
+            var logger = new ConsoleHelper();
+            var wpNumber = 1;
+            for (var i = 0; i < waypoints.Count; i++)
+            {
+                // Punkte die versehentlich oder falsch gesetzt wurden;
+                if (i == 0 || i == 2 || i == 33 || i == 34 || i == 35)
+                {
+                    //_logger.Log(LogLevel.Debug, "Ignoriere Wegpunkt der versehentlich/falsch gesetzt wurde!");
+                    continue;
+                }
 
-            //    // Erstellt für jeden Wegpunkt einen neuen Punkt auf der Karte
-            //    sw.WriteLine($"var marker{i.ToString()} = new google.maps.Marker(" + "{");
-            //    sw.WriteLine("position: { lat: " + waypoints[i].Latitude + ", lng: " + waypoints[i].Longitude + "},");
-            //    sw.WriteLine("map: map,");
+                // Erstellt für jeden Wegpunkt einen neuen Punkt auf der Karte
+                sw.WriteLine($"var marker{i.ToString()} = new google.maps.Marker(" + "{");
+                sw.WriteLine("position: { lat: " + waypoints[i].Latitude + ", lng: " + waypoints[i].Longitude + "},");
+                sw.WriteLine("map: map,");
 
-            //    switch (i)
-            //    {
-            //        default:
-            //            sw.WriteLine($"label: '{wpNumber.ToString()}',");
-            //            break;
-            //    }
+                switch (i)
+                {
+                    default:
+                        sw.WriteLine($"label: '{wpNumber.ToString()}',");
+                        break;
+                }
 
-            //    sw.WriteLine("});");
+                sw.WriteLine("});");
 
-            //    _logger.Log(LogLevel.Debug, $"{i} => {waypoints[i].Latitude},{waypoints[i].Longitude}");
+                logger.Log(LogLevel.Debug, $"{i} => {waypoints[i].Latitude},{waypoints[i].Longitude}");
 
-            //    wpNumber++;
-            //}
+                wpNumber++;
+            }
 
-            //sw.WriteLine("}");
-            #endregion
+            sw.WriteLine("}");
+#endif
 
             sw.WriteLine("</script>");
             sw.WriteLine($"<script src=\"https://maps.googleapis.com/maps/api/js?key={_apiKey}&callback=initMap\"");
@@ -216,7 +227,7 @@ namespace PSeminar
             // Initiiert einen WebBrowser und fügt ihn als Hintergrundelement hinzu (benötigt um die Karte zu bewegen)
             var chromeBrowser = new ChromiumWebBrowser("file://" + htmlPath)
             {
-                Dock = DockStyle.Fill,
+                Dock = DockStyle.Fill
             };
 
             _main?.Controls.Add(chromeBrowser);
