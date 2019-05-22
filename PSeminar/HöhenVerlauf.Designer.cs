@@ -59,16 +59,16 @@
             title1.Text = "Wanderweg Höhenverlauf";
             this.heightChart.Titles.Add(title1);
             // 
-            // HeightGraph
+            // HöhenVerlauf
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(577, 358);
             this.Controls.Add(this.heightChart);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "HeightGraph";
+            this.Name = "HöhenVerlauf";
             this.Text = "P-Seminar Projekt: Wanderweg Ickeheim - github.com/Logxn - www.loganthompson.de -" +
-    " Track Daten";
+    " Höhenverlauf";
             this.Load += new System.EventHandler(this.TrackData_Load);
             ((System.ComponentModel.ISupportInitialize)(this.heightChart)).EndInit();
             this.ResumeLayout(false);

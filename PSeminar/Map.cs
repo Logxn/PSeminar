@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
@@ -237,6 +238,11 @@ namespace PSeminar
             };
 
             _main?.Controls.Add(chromeBrowser);
+        }
+
+        public bool IsNickelTrack()
+        {
+            return _isNickelTrack;
         }
     }
 }

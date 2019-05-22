@@ -171,6 +171,12 @@
     <Compile Include="HöhenVerlauf.Designer.cs">
       <DependentUpon>HöhenVerlauf.cs</DependentUpon>
     </Compile>
+    <Compile Include="Wegbeschaffenheit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Wegbeschaffenheit.Designer.cs">
+      <DependentUpon>Wegbeschaffenheit.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Höhen.resx">
       <DependentUpon>Höhen.cs</DependentUpon>
     </EmbeddedResource>
@@ -189,6 +195,9 @@
     </Compile>
     <EmbeddedResource Include="HöhenVerlauf.resx">
       <DependentUpon>HöhenVerlauf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wegbeschaffenheit.resx">
+      <DependentUpon>Wegbeschaffenheit.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

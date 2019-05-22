@@ -69,5 +69,13 @@ namespace PSeminar
             var höhen = new Höhen(_gpx);
             höhen.Show();
         }
+
+        private void WegbeschaffenheitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!_map.IsNickelTrack()) return;
+
+            var wegbeschaffenheit = new Wegbeschaffenheit();
+            wegbeschaffenheit.Show();
+        }
     }
 }

@@ -37,7 +37,7 @@
             this.menuGraph = new System.Windows.Forms.ToolStripMenuItem();
             this.HöhenverlaufMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.HöhenMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.trackinfosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.WegbeschaffenheitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileDialog = new System.Windows.Forms.OpenFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -98,7 +98,7 @@
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuOpen,
             this.menuGraph,
-            this.trackinfosToolStripMenuItem});
+            this.WegbeschaffenheitToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(806, 24);
@@ -135,11 +135,12 @@
             this.HöhenMenu.Text = "Höhen";
             this.HöhenMenu.Click += new System.EventHandler(this.HöhenMenu_Click);
             // 
-            // trackinfosToolStripMenuItem
+            // WegbeschaffenheitToolStripMenuItem
             // 
-            this.trackinfosToolStripMenuItem.Name = "trackinfosToolStripMenuItem";
-            this.trackinfosToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
-            this.trackinfosToolStripMenuItem.Text = "Trackinfos";
+            this.WegbeschaffenheitToolStripMenuItem.Name = "WegbeschaffenheitToolStripMenuItem";
+            this.WegbeschaffenheitToolStripMenuItem.Size = new System.Drawing.Size(121, 20);
+            this.WegbeschaffenheitToolStripMenuItem.Text = "Wegbeschaffenheit";
+            this.WegbeschaffenheitToolStripMenuItem.Click += new System.EventHandler(this.WegbeschaffenheitToolStripMenuItem_Click);
             // 
             // fileDialog
             // 
@@ -210,7 +211,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuGraph;
         private System.Windows.Forms.ToolStripMenuItem HöhenverlaufMenu;
         private System.Windows.Forms.ToolStripMenuItem HöhenMenu;
-        private System.Windows.Forms.ToolStripMenuItem trackinfosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem WegbeschaffenheitToolStripMenuItem;
         private System.Windows.Forms.Label labelBierkeller;
     }
 }
