@@ -39,6 +39,8 @@
             // heightChart
             // 
             chartArea1.AxisX.Title = "Entfernung in Wegpunkten";
+            chartArea1.AxisY.Maximum = 400D;
+            chartArea1.AxisY.Minimum = 300D;
             chartArea1.AxisY.Title = "Höhe in Meter";
             chartArea1.Name = "ChartArea1";
             this.heightChart.ChartAreas.Add(chartArea1);
@@ -46,14 +48,15 @@
             legend1.Name = "legende";
             legend1.Title = "Legende";
             this.heightChart.Legends.Add(legend1);
-            this.heightChart.Location = new System.Drawing.Point(12, 10);
+            this.heightChart.Location = new System.Drawing.Point(16, 12);
+            this.heightChart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.heightChart.Name = "heightChart";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series1.Legend = "legende";
             series1.Name = "Höhe";
             this.heightChart.Series.Add(series1);
-            this.heightChart.Size = new System.Drawing.Size(556, 336);
+            this.heightChart.Size = new System.Drawing.Size(741, 414);
             this.heightChart.TabIndex = 4;
             title1.Name = "chartTitle";
             title1.Text = "Wanderweg Höhenverlauf";
@@ -61,11 +64,12 @@
             // 
             // HöhenVerlauf
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(577, 358);
+            this.ClientSize = new System.Drawing.Size(769, 441);
             this.Controls.Add(this.heightChart);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "HöhenVerlauf";
             this.Text = "P-Seminar Projekt: Wanderweg Ickeheim - github.com/Logxn - www.loganthompson.de -" +
     " Höhenverlauf";

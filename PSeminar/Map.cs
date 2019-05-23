@@ -112,6 +112,26 @@ namespace PSeminar
             sw.WriteLine("scrollwheel: true");
             sw.WriteLine("});");
 #if !DEBUG
+            // Bierkeller Alternativ Weg
+            sw.WriteLine("var alternativeCoordinates = [");
+            sw.WriteLine("{lat: 49.474083, lng: 10.448440},");
+            sw.WriteLine("{lat: 49.474565, lng: 10.450166},");
+            sw.WriteLine("{lat: 49.474660, lng: 10.451220},");
+            sw.WriteLine("{lat: 49.474520, lng: 10.451733},");
+            sw.WriteLine("{lat: 49.474007, lng: 10.452232},");
+            sw.WriteLine("{lat: 49.473594, lng: 10.452602},");
+            sw.WriteLine("{lat: 49.473682, lng: 10.455618},");
+            sw.WriteLine("{lat: " + waypoints[233].Latitude + ", lng: " + waypoints[233].Longitude + "},");
+            sw.WriteLine("]");
+
+            sw.WriteLine("var alternativeTrackPath = new google.maps.Polyline({");
+            sw.WriteLine("path: alternativeCoordinates,");
+            sw.WriteLine("geodesic: true,");
+            sw.WriteLine("strokeColor: '#3E047C',");
+            sw.WriteLine("strokeOpacity: 1.0,");
+            sw.WriteLine("strokeWeight: 2");
+            sw.WriteLine("});");
+
             sw.WriteLine("var trackCoordinates = [");
             for (var i = 0; i < waypoints.Count; i++)
             {
@@ -119,7 +139,7 @@ namespace PSeminar
                 if (_isNickelTrack)
                 {
                     // Trackfehler
-                    if (i + 1 > 110 && i + 1 < 120 || i > 86 && i < 114 || i > 200 && i < 233) continue;
+                    if (i > 109 && i < 119 || i > 86 && i < 114 || i > 200 && i < 233 || i >= 0 && i < 5 || i == 623) continue;
 
                     if (i == 86)
                     {
@@ -159,6 +179,7 @@ namespace PSeminar
             sw.WriteLine("strokeWeight: 2");
             sw.WriteLine("});");
 
+            #region Sehenswürdigkeiten
             // Spezielle Marker wie Gipsbruch, Start & Ziel, später auch noch Rastplätze etc.
             sw.WriteLine("var markerGips = new google.maps.Marker(" + "{");
             sw.WriteLine("position: { lat: " + waypoints[77].Latitude + ", lng: " + waypoints[77].Longitude + "},");
@@ -167,7 +188,7 @@ namespace PSeminar
             sw.WriteLine("});");
 
             sw.WriteLine("var markerStartZiel = new google.maps.Marker(" + "{");
-            sw.WriteLine("position: { lat: " + waypoints[500].Latitude + ", lng: " + waypoints[500].Longitude + "},");
+            sw.WriteLine("position: { lat: " + waypoints[623].Latitude + ", lng: " + waypoints[623].Longitude + "},");
             sw.WriteLine("map: map,");
             sw.WriteLine("label: 'S/Z',");
             sw.WriteLine("});");
@@ -183,8 +204,36 @@ namespace PSeminar
             sw.WriteLine("map: map,");
             sw.WriteLine("label: 'B',");
             sw.WriteLine("});");
+#endregion
+
+            #region Rastplätze
+            sw.WriteLine("var markerSeerastplatz = new google.maps.Marker(" + "{");
+            sw.WriteLine("position: { lat: " + waypoints[233].Latitude + ", lng: " + waypoints[233].Longitude + "},");
+            sw.WriteLine("map: map,");
+            sw.WriteLine("icon: {");
+            sw.WriteLine("url: \"http://maps.google.com/mapfiles/ms/icons/blue-dot.png\"");
+            sw.WriteLine("}");
+            sw.WriteLine("});");
+
+            sw.WriteLine("var markerLinken = new google.maps.Marker(" + "{");
+            sw.WriteLine("position: { lat: " + waypoints[519].Latitude + ", lng: " + waypoints[519].Longitude + "},");
+            sw.WriteLine("map: map,");
+            sw.WriteLine("icon: {");
+            sw.WriteLine("url: \"http://maps.google.com/mapfiles/ms/icons/blue-dot.png\"");
+            sw.WriteLine("}");
+            sw.WriteLine("});");
+
+            sw.WriteLine("var markerWalnuss = new google.maps.Marker(" + "{");
+            sw.WriteLine("position: { lat: " + waypoints[196].Latitude + ", lng: " + waypoints[196].Longitude + "},");
+            sw.WriteLine("map: map,");
+            sw.WriteLine("icon: {");
+            sw.WriteLine("url: \"http://maps.google.com/mapfiles/ms/icons/blue-dot.png\"");
+            sw.WriteLine("}");
+            sw.WriteLine("});");
+#endregion
 
             sw.WriteLine("trackPath.setMap(map);");
+            sw.WriteLine("alternativeTrackPath.setMap(map)");
             sw.WriteLine("}");
 #endif
 
